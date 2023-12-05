@@ -1,0 +1,4608 @@
+openapi: 3.0.2
+info:
+  title: api.lorescan.com
+  description: API for lorescan.com
+  version: 1.0.0
+servers:
+  - url: https://localhost:3000
+paths:
+  /block/accounts-by-address:
+    get:
+      tags:
+        - Block
+      summary: Get Accounts By Address
+      operationId: get_accounts_by_address_block_accounts_by_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/contracts-by-creator:
+    get:
+      tags:
+        - Block
+      summary: Get Contracts By Creator
+      operationId: get_contracts_by_creator_block_contracts_by_creator_get
+      parameters:
+        - required: true
+          schema:
+            title: Creator Address
+            type: string
+          name: creator_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Created After Unix Timestamp
+            type: integer
+          name: created_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Created Before Unix Timestamp
+            type: integer
+          name: created_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/accounts-by-date-created:
+    get:
+      tags:
+        - Block
+      summary: Get Accounts By Date Created
+      operationId: get_accounts_by_date_created_block_accounts_by_date_created_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: true
+          schema:
+            title: Account Type
+            enum:
+              - all
+              - contract
+              - wallet
+            type: string
+          name: account_type
+          in: query
+        - required: false
+          schema:
+            title: Created After Unix Timestamp
+            type: integer
+          name: created_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Created Before Unix Timestamp
+            type: integer
+          name: created_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/blocks-by-date:
+    get:
+      tags:
+        - Block
+      summary: Get Blocks By Date
+      operationId: get_blocks_by_date_block_blocks_by_date_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Added After Unix Timestamp
+            type: integer
+          name: added_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Added Before Unix Timestamp
+            type: integer
+          name: added_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/blocks-by-number:
+    get:
+      tags:
+        - Block
+      summary: Get Blocks By Number
+      operationId: get_blocks_by_number_block_blocks_by_number_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Block Number Above Inclusive
+            type: integer
+          name: block_number_above_inclusive
+          in: query
+        - required: false
+          schema:
+            title: Block Number Below Inclusive
+            type: integer
+          name: block_number_below_inclusive
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/transactions-by-account:
+    get:
+      tags:
+        - Block
+      summary: Get Transactions By Account
+      operationId: get_transactions_by_account_block_transactions_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Block Number Above Inclusive
+            type: integer
+          name: block_number_above_inclusive
+          in: query
+        - required: false
+          schema:
+            title: Block Number Below Inclusive
+            type: integer
+          name: block_number_below_inclusive
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/transactions-by-block:
+    get:
+      tags:
+        - Block
+      summary: Get Transactions By Block
+      operationId: get_transactions_by_block_block_transactions_by_block_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Block Number Above Inclusive
+            type: integer
+          name: block_number_above_inclusive
+          in: query
+        - required: false
+          schema:
+            title: Block Number Below Inclusive
+            type: integer
+          name: block_number_below_inclusive
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 10
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/transactions-by-contract:
+    get:
+      tags:
+        - Block
+      summary: Get Transactions By Contract
+      operationId: get_transactions_by_contract_block_transactions_by_contract_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Block Number Above Inclusive
+            type: integer
+          name: block_number_above_inclusive
+          in: query
+        - required: false
+          schema:
+            title: Block Number Below Inclusive
+            type: integer
+          name: block_number_below_inclusive
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/transactions-by-date:
+    get:
+      tags:
+        - Block
+      summary: Get Transactions By Date
+      operationId: get_transactions_by_date_block_transactions_by_date_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Occurred After Unix Timestamp
+            type: integer
+          name: occurred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Occurred Before Unix Timestamp
+            type: integer
+          name: occurred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/transactions-by-hash:
+    get:
+      tags:
+        - Block
+      summary: Get Transactions By Hash
+      operationId: get_transactions_by_hash_block_transactions_by_hash_get
+      parameters:
+        - required: true
+          schema:
+            title: Transaction Hashes Separated By Commas Max 25
+            type: string
+          name: transaction_hashes_separated_by_commas_max_25
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/logs-by-block:
+    get:
+      tags:
+        - Block
+      summary: Get Logs By Block Todo
+      operationId: get_logs_by_block_todo_block_logs_by_block_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: false
+          schema:
+            title: Event Signature
+            type: string
+          name: event_signature
+          in: query
+        - required: false
+          schema:
+            title: Block Number Above
+            type: integer
+          name: block_number_above
+          in: query
+        - required: false
+          schema:
+            title: Block Number Below
+            type: integer
+          name: block_number_below
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/logs-by-transaction:
+    get:
+      tags:
+        - Block
+      summary: Get Logs By Transaction
+      operationId: get_logs_by_transaction_block_logs_by_transaction_get
+      parameters:
+        - required: true
+          schema:
+            title: Transaction Hash
+            type: string
+          name: transaction_hash
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/traces-by-account:
+    get:
+      tags:
+        - Block
+      summary: Get Traces By Account Todo
+      operationId: get_traces_by_account_todo_block_traces_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Block Number Above
+            type: integer
+          name: block_number_above
+          in: query
+        - required: false
+          schema:
+            title: Block Number Below
+            type: integer
+          name: block_number_below
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/traces-by-block:
+    get:
+      tags:
+        - Block
+      summary: Get Traces By Block Todo
+      operationId: get_traces_by_block_todo_block_traces_by_block_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Block Number Above
+            type: integer
+          name: block_number_above
+          in: query
+        - required: false
+          schema:
+            title: Block Number Below
+            type: integer
+          name: block_number_below
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/traces-by-transaction:
+    get:
+      tags:
+        - Block
+      summary: Get Traces By Transaction
+      operationId: get_traces_by_transaction_block_traces_by_transaction_get
+      parameters:
+        - required: true
+          schema:
+            title: Transaction Hash
+            type: string
+          name: transaction_hash
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /block/traces-by-contract:
+    get:
+      tags:
+        - Block
+      summary: Get Traces By Contract Todo
+      operationId: get_traces_by_contract_todo_block_traces_by_contract_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Function Selector
+            type: string
+          name: function_selector
+          in: query
+        - required: false
+          schema:
+            title: Block Number Above
+            type: integer
+          name: block_number_above
+          in: query
+        - required: false
+          schema:
+            title: Block Number Below
+            type: integer
+          name: block_number_below
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/native-token-balances-by-account:
+    get:
+      tags:
+        - Token
+      summary: Get Native Token Balances By Account
+      operationId: get_native_token_balances_by_account_token_native_token_balances_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/native-token-transfers-by-account:
+    get:
+      tags:
+        - Token
+      summary: Get Narive Token Transfers By Account
+      operationId: get_narive_token_transfers_by_account_token_native_token_transfers_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Transferred After Unix Timestamp
+            type: integer
+          name: transferred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Transferred Before Unix Timestamp
+            type: integer
+          name: transferred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Transfer Direction
+            enum:
+              - sent
+              - received
+            type: string
+          name: transfer_direction
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/native-token-transfers:
+    get:
+      tags:
+        - Token
+      summary: Get Narive Token Transfers
+      operationId: get_narive_token_transfers_token_native_token_transfers_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Transferred After Unix Timestamp
+            type: integer
+          name: transferred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Transferred Before Unix Timestamp
+            type: integer
+          name: transferred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/tokens-by-contract-address:
+    get:
+      tags:
+        - Token
+      summary: Get Tokens By Contract Address
+      operationId: get_tokens_by_contract_address_token_tokens_by_contract_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/tokens-by-date-created:
+    get:
+      tags:
+        - Token
+      summary: Get Tokens By Date Created
+      operationId: get_tokens_by_date_created_token_tokens_by_date_created_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Created After Unix Timestamp
+            type: integer
+          name: created_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Created Before Unix Timestamp
+            type: integer
+          name: created_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/tokens-by-name:
+    get:
+      tags:
+        - Token
+      summary: Get Tokens By Name
+      operationId: get_tokens_by_name_token_tokens_by_name_get
+      parameters:
+        - required: true
+          schema:
+            title: Substring
+            type: string
+          name: substring
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/tokens-by-owner:
+    get:
+      tags:
+        - Token
+      summary: Get Tokens By Owner
+      operationId: get_tokens_by_owner_token_tokens_by_owner_get
+      parameters:
+        - required: true
+          schema:
+            title: Owner Address
+            type: string
+          name: owner_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/tokens-by-symbol:
+    get:
+      tags:
+        - Token
+      summary: Get Tokens By Symbol
+      operationId: get_tokens_by_symbol_token_tokens_by_symbol_get
+      parameters:
+        - required: true
+          schema:
+            title: Substring
+            type: string
+          name: substring
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/historical-native-token-balance-by-account:
+    get:
+      tags:
+        - Token
+      summary: Get Historical Native Token Balance By Account Todo
+      operationId: get_historical_native_token_balance_by_account_todo_token_historical_native_token_balance_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Timestamp After Unix Timestamp
+            type: integer
+          name: timestamp_after_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/historical-token-balances-by-account:
+    get:
+      tags:
+        - Token
+      summary: Get Historical Token Balances By Account Todo
+      operationId: get_historical_token_balances_by_account_todo_token_historical_token_balances_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Timestamp After Unix Timestamp
+            type: integer
+          name: timestamp_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/historical-token-owners:
+    get:
+      tags:
+        - Token
+      summary: Get Historical Token Owners Todo
+      operationId: get_historical_token_owners_todo_token_historical_token_owners_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Timestamp After Unix Timestamp
+            type: integer
+          name: timestamp_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/owners-by-contract-address:
+    get:
+      tags:
+        - Token
+      summary: Get Owners By Contract Address Todo
+      operationId: get_owners_by_contract_address_todo_token_owners_by_contract_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/transfers:
+    get:
+      tags:
+        - Token
+      summary: Get Transfers
+      operationId: get_transfers_token_transfers_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Transferred After Unix Timestamp
+            type: integer
+          name: transferred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Transferred Before Unix Timestamp
+            type: integer
+          name: transferred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/transfers-by-contract-address:
+    get:
+      tags:
+        - Token
+      summary: Get Transfers By Contract Address
+      operationId: get_transfers_by_contract_address_token_transfers_by_contract_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Transferred After Unix Timestamp
+            type: integer
+          name: transferred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Transferred Before Unix Timestamp
+            type: integer
+          name: transferred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/transfers-by-account:
+    get:
+      tags:
+        - Token
+      summary: Get Transfers By Account
+      operationId: get_transfers_by_account_token_transfers_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Transferred After Unix Timestamp
+            type: integer
+          name: transferred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Transferred Before Unix Timestamp
+            type: integer
+          name: transferred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Transfer Direction
+            enum:
+              - sent
+              - received
+            type: string
+          name: transfer_direction
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/swaps:
+    get:
+      tags:
+        - Token
+      summary: Get Token Swaps Todo
+      operationId: get_token_swaps_todo_token_swaps_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Occurred After Unix Timestamp
+            type: integer
+          name: occurred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Occurred Before Unix Timestamp
+            type: integer
+          name: occurred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/swaps-by-account:
+    get:
+      tags:
+        - Token
+      summary: Get Token Swaps By Account Todo
+      operationId: get_token_swaps_by_account_todo_token_swaps_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Occurred After Unix Timestamp
+            type: integer
+          name: occurred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Occurred Before Unix Timestamp
+            type: integer
+          name: occurred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/swaps-by-contract-address:
+    get:
+      tags:
+        - Token
+      summary: Get Token Swaps By Contract Address Todo
+      operationId: get_token_swaps_by_contract_address_todo_token_swaps_by_contract_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Occurred After Unix Timestamp
+            type: integer
+          name: occurred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Occurred Before Unix Timestamp
+            type: integer
+          name: occurred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Direction
+            enum:
+              - sent
+              - received
+            type: string
+          name: direction
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /token/swaps-by-pair:
+    get:
+      tags:
+        - Token
+      summary: Get Token Swaps By Pair Todo
+      operationId: get_token_swaps_by_pair_todo_token_swaps_by_pair_get
+      parameters:
+        - required: true
+          schema:
+            title: Token One
+            type: string
+          name: token_one
+          in: query
+        - required: true
+          schema:
+            title: Token Two
+            type: string
+          name: token_two
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Occurred After Unix Timestamp
+            type: integer
+          name: occurred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Occurred Before Unix Timestamp
+            type: integer
+          name: occurred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/collections-by-contract-address:
+    get:
+      tags:
+        - NFT
+      summary: Get Collections By Contract Address
+      operationId: get_collections_by_contract_address_nft_collections_by_contract_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Addresses Separated By Commas
+            type: string
+          name: contract_addresses_separated_by_commas
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/collections-by-date-created:
+    get:
+      tags:
+        - NFT
+      summary: Get Collections By Date Created
+      operationId: get_collections_by_date_created_nft_collections_by_date_created_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Created After Unix Timestamp
+            type: integer
+          name: created_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Created Before Unix Timestamp
+            type: integer
+          name: created_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Standard
+            enum:
+              - all
+              - erc721
+              - erc1155
+            type: string
+          name: standard
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/collections-by-name:
+    get:
+      tags:
+        - NFT
+      summary: Get Collections By Name
+      operationId: get_collections_by_name_nft_collections_by_name_get
+      parameters:
+        - required: true
+          schema:
+            title: Substring
+            type: string
+          name: substring
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/collections-by-symbol:
+    get:
+      tags:
+        - NFT
+      summary: Get Collections By Symbol
+      operationId: get_collections_by_symbol_nft_collections_by_symbol_get
+      parameters:
+        - required: true
+          schema:
+            title: Substring
+            type: string
+          name: substring
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/nfts-by-contract-address:
+    get:
+      tags:
+        - NFT
+      summary: Get Nfts By Contract Address
+      operationId: get_nfts_by_contract_address_nft_nfts_by_contract_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/nfts-by-token-id:
+    get:
+      tags:
+        - NFT
+      summary: Get Nfts By Token Id
+      operationId: get_nfts_by_token_id_nft_nfts_by_token_id_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Addresses Separated By Commas
+            type: string
+          name: contract_addresses_separated_by_commas
+          in: query
+        - required: true
+          schema:
+            title: Token Ids Separated By Commas
+            type: string
+          name: token_ids_separated_by_commas
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/nfts-by-date-minted:
+    get:
+      tags:
+        - NFT
+      summary: Get Nfts By Date Minted
+      operationId: get_nfts_by_date_minted_nft_nfts_by_date_minted_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Minted After Unix Timestamp
+            type: integer
+          name: minted_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Minted Before Unix Timestamp
+            type: integer
+          name: minted_before_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/nfts-by-name:
+    get:
+      tags:
+        - NFT
+      summary: Get Nfts By Name
+      operationId: get_nfts_by_name_nft_nfts_by_name_get
+      parameters:
+        - required: true
+          schema:
+            title: Substring
+            type: string
+          name: substring
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/nfts-by-owner:
+    get:
+      tags:
+        - NFT
+      summary: Get Nfts By Owner
+      operationId: get_nfts_by_owner_nft_nfts_by_owner_get
+      parameters:
+        - required: true
+          schema:
+            title: Owner Address
+            type: string
+          name: owner_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/owners-by-contract-address:
+    get:
+      tags:
+        - NFT
+      summary: Get Owners By Contract Address
+      operationId: get_owners_by_contract_address_nft_owners_by_contract_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/owners-by-token-id:
+    get:
+      tags:
+        - NFT
+      summary: Get Owners By Token Id
+      operationId: get_owners_by_token_id_nft_owners_by_token_id_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Token Id
+            type: string
+          name: token_id
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/historical-nft-balances-by-account:
+    get:
+      tags:
+        - NFT
+      summary: Get Historical Nft Balances By Account Todo
+      operationId: get_historical_nft_balances_by_account_todo_nft_historical_nft_balances_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/historical_nft_owners:
+    get:
+      tags:
+        - NFT
+      summary: Get Historical Nft Owners Todo
+      operationId: get_historical_nft_owners_todo_nft_historical_nft_owners_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/transfers:
+    get:
+      tags:
+        - NFT
+      summary: Get Transfers
+      operationId: get_transfers_nft_transfers_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Transferred After Unix Timestamp
+            type: integer
+          name: transferred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Transferred Before Unix Timestamp
+            type: integer
+          name: transferred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/transfers-by-contract-address:
+    get:
+      tags:
+        - NFT
+      summary: Get Transfers By Contract Address
+      operationId: get_transfers_by_contract_address_nft_transfers_by_contract_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Transferred After Unix Timestamp
+            type: integer
+          name: transferred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Transferred Before Unix Timestamp
+            type: integer
+          name: transferred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/transfers-by-token-id:
+    get:
+      tags:
+        - NFT
+      summary: Get Transfers By Token Id
+      operationId: get_transfers_by_token_id_nft_transfers_by_token_id_get
+      parameters:
+        - required: true
+          schema:
+            title: Contract Address
+            type: string
+          name: contract_address
+          in: query
+        - required: true
+          schema:
+            title: Token Id
+            type: string
+          name: token_id
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Transferred After Unix Timestamp
+            type: integer
+          name: transferred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Transferred Before Unix Timestamp
+            type: integer
+          name: transferred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/transfers-by-account:
+    get:
+      tags:
+        - NFT
+      summary: Get Transfers By Account
+      operationId: get_transfers_by_account_nft_transfers_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Account Address
+            type: string
+          name: account_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Transferred After Unix Timestamp
+            type: integer
+          name: transferred_after_unix_timestamp
+          in: query
+        - required: false
+          schema:
+            title: Transferred Before Unix Timestamp
+            type: integer
+          name: transferred_before_unix_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Transfer Direction
+            enum:
+              - sent
+              - received
+            type: string
+          name: transfer_direction
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/sales:
+    get:
+      tags:
+        - NFT
+      summary: Get Sales Todo
+      operationId: get_sales_todo_nft_sales_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/sales-by-contract-address:
+    get:
+      tags:
+        - NFT
+      summary: Get Sales By Contract Address Todo
+      operationId: get_sales_by_contract_address_todo_nft_sales_by_contract_address_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/sales-by-token-id:
+    get:
+      tags:
+        - NFT
+      summary: Get Sales By Token Id Todo
+      operationId: get_sales_by_token_id_todo_nft_sales_by_token_id_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /nft/sales-by-account:
+    get:
+      tags:
+        - NFT
+      summary: Get Sales By Account Todo
+      operationId: get_sales_by_account_todo_nft_sales_by_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Fantom
+              - Fantom_Testnet
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 25
+          name: limit
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+            default: 0
+          name: offset
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /ens/ens-records-by-resolved-account:
+    get:
+      tags:
+        - ENS
+      summary: Get Ens Records By Resolved Account Todo
+      operationId: get_ens_records_by_resolved_account_todo_ens_ens_records_by_resolved_account_get
+      parameters:
+        - required: true
+          schema:
+            title: Resolved Address
+            type: string
+          name: resolved_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 100
+          name: limit
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /prices/ohlc:
+    get:
+      tags:
+        - Token Prices
+      summary: Get Ohlc Price History Todo
+      operationId: get_OHLC_price_history_todo_prices_ohlc_get
+      parameters:
+        - required: true
+          schema:
+            title: Token Address
+            type: string
+          name: token_address
+          in: query
+        - required: true
+          schema:
+            title: Chain
+            enum:
+              - Ethereum
+              - Fantom
+              - Base
+              - Fantom_Testnet
+              - Polygon
+              - Optimism
+              - Arbitrum
+              - Goerli
+            type: string
+          name: chain
+          in: query
+        - required: false
+          schema:
+            title: From Timestamp
+            type: string
+            format: date-time
+          name: from_timestamp
+          in: query
+        - required: false
+          schema:
+            title: To Timestamp
+            type: string
+            format: date-time
+          name: to_timestamp
+          in: query
+        - required: true
+          schema:
+            title: Interval
+            enum:
+              - 1m
+              - 5m
+              - 15m
+              - 30m
+              - 1h
+              - 1d
+              - 1w
+            type: string
+          name: interval
+          in: query
+        - required: true
+          schema:
+            title: Order
+            enum:
+              - asc
+              - desc
+            type: string
+          name: order
+          in: query
+        - required: false
+          schema:
+            title: Limit
+            type: integer
+            default: 100
+          name: limit
+          in: query
+        - required: true
+          schema:
+            title: Token
+            type: string
+          name: token
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /:
+    get:
+      tags:
+        - Index
+      summary: Index
+      operationId: index__get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+  /{chain}:
+    get:
+      tags:
+        - Explorer API
+      summary: Explorer Get Apis
+      operationId: explorer_get_apis__chain__get
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            type: integer
+          name: chain
+          in: path
+        - required: true
+          schema:
+            title: Apikey
+            type: string
+          name: apikey
+          in: query
+        - required: true
+          schema:
+            title: Module
+            type: string
+          name: module
+          in: query
+        - required: true
+          schema:
+            title: Action
+            type: string
+          name: action
+          in: query
+        - description: Addres if needed in the API
+          required: false
+          schema:
+            title: Address
+            type: string
+            description: Addres if needed in the API
+          name: address
+          in: query
+        - description: guid if needed in the API
+          required: false
+          schema:
+            title: Guid
+            type: string
+            description: guid if needed in the API
+          name: guid
+          in: query
+        - description: Comma separated contract addresses if needed in the API
+          required: false
+          schema:
+            title: Contractaddresses
+            type: string
+            description: Comma separated contract addresses if needed in the API
+          name: contractaddresses
+          in: query
+        - required: false
+          schema:
+            title: Contractaddress
+            type: string
+          name: contractaddress
+          in: query
+        - required: false
+          schema:
+            title: Tag
+            type: string
+          name: tag
+          in: query
+        - required: false
+          schema:
+            title: Closest
+            type: string
+          name: closest
+          in: query
+        - description: txhash if needed in the API
+          required: false
+          schema:
+            title: Txhash
+            type: string
+            description: txhash if needed in the API
+          name: txhash
+          in: query
+        - required: false
+          schema:
+            title: Startblock
+            type: integer
+          name: startblock
+          in: query
+        - required: false
+          schema:
+            title: Endblock
+            type: integer
+          name: endblock
+          in: query
+        - required: false
+          schema:
+            title: Startdate
+            type: string
+          name: startdate
+          in: query
+        - required: false
+          schema:
+            title: Enddate
+            type: string
+          name: enddate
+          in: query
+        - required: false
+          schema:
+            title: Page
+            type: integer
+          name: page
+          in: query
+        - required: false
+          schema:
+            title: Offset
+            type: integer
+          name: offset
+          in: query
+        - required: false
+          schema:
+            title: Sort
+            type: string
+          name: sort
+          in: query
+        - required: false
+          schema:
+            title: Blocktype
+            type: string
+          name: blocktype
+          in: query
+        - required: false
+          schema:
+            title: Blockno
+            type: integer
+          name: blockno
+          in: query
+        - required: false
+          schema:
+            title: Timestamp
+            type: integer
+          name: timestamp
+          in: query
+        - required: false
+          schema:
+            title: Hex
+            type: string
+          name: hex
+          in: query
+        - required: false
+          schema:
+            title: To
+            type: string
+          name: to
+          in: query
+        - required: false
+          schema:
+            title: Data
+            type: string
+          name: data
+          in: query
+        - required: false
+          schema:
+            title: Position
+            type: string
+          name: position
+          in: query
+        - required: false
+          schema:
+            title: Value
+            type: string
+          name: value
+          in: query
+        - required: false
+          schema:
+            title: Gasprice
+            type: string
+          name: gasPrice
+          in: query
+        - required: false
+          schema:
+            title: Gas
+            type: string
+          name: gas
+          in: query
+        - required: false
+          schema:
+            title: Boolean
+            type: boolean
+          name: boolean
+          in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+        - Explorer API
+      summary: Explorer Post Apis
+      operationId: explorer_post_apis__chain__post
+      parameters:
+        - required: true
+          schema:
+            title: Chain
+            type: integer
+          name: chain
+          in: path
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Body_explorer_post_apis__chain__post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/migrate-data:
+    post:
+      tags:
+        - Admin
+      summary: Migratedata
+      operationId: MigrateData_admin_migrate_data_post
+      parameters:
+        - required: true
+          schema:
+            title: Url
+            type: string
+          name: url
+          in: query
+        - required: true
+          schema:
+            title: Offset
+            type: integer
+          name: offset
+          in: query
+        - required: false
+          schema:
+            title: Delay
+            type: integer
+            default: 0
+          name: delay
+          in: query
+        - required: true
+          schema:
+            title: X-Token
+            type: string
+          name: x-token
+          in: header
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/submit-job:
+    post:
+      tags:
+        - Admin
+      summary: Submit New Job
+      operationId: submit_new_job_admin_submit_job_post
+      parameters:
+        - description: Job name comes here
+          required: false
+          schema:
+            title: Task
+            type: string
+            description: Job name comes here
+            default: addTwoNumbers_Task
+          name: task
+          in: query
+        - description: Queue name comes here
+          required: false
+          schema:
+            title: Queue
+            type: string
+            description: Queue name comes here
+            default: defaultQ
+          name: queue
+          in: query
+        - description: It is list of job parameters
+          required: false
+          schema:
+            title: Data
+            type: string
+            description: It is list of job parameters
+            default: '[1,2]'
+          name: data
+          in: query
+        - required: false
+          schema:
+            title: Delay
+            type: integer
+            default: 0
+          name: delay
+          in: query
+        - required: true
+          schema:
+            title: X-Token
+            type: string
+          name: x-token
+          in: header
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/stop-migrate-data:
+    post:
+      tags:
+        - Admin
+      summary: Stopmigratedata
+      operationId: StopMigrateData_admin_stop_migrate_data_post
+      parameters:
+        - required: true
+          schema:
+            title: Url
+            type: string
+          name: url
+          in: query
+        - required: true
+          schema:
+            title: X-Token
+            type: string
+          name: x-token
+          in: header
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/task/{task_id}:
+    get:
+      tags:
+        - Admin
+      summary: Get Task Status
+      operationId: get_task_status_admin_task__task_id__get
+      parameters:
+        - required: true
+          schema:
+            title: Task Id
+            type: string
+          name: task_id
+          in: path
+        - required: true
+          schema:
+            title: X-Token
+            type: string
+          name: x-token
+          in: header
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/contracts-from-gcp/{from_file_number}/{till_file_number}:
+    get:
+      tags:
+        - Admin
+      summary: Contracts From Gcp
+      operationId: contracts_from_gcp_admin_contracts_from_gcp__from_file_number___till_file_number__get
+      parameters:
+        - required: true
+          schema:
+            title: From File Number
+            type: integer
+          name: from_file_number
+          in: path
+        - required: true
+          schema:
+            title: Till File Number
+            type: integer
+          name: till_file_number
+          in: path
+        - required: true
+          schema:
+            title: X-Token
+            type: string
+          name: x-token
+          in: header
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/assign-role:
+    post:
+      tags:
+        - Admin
+      summary: Assignrole
+      description: '**Lore User IDs**    Brihu: 1    Henry: 18    Rooney: 10100    Dawson: 19    Kilauea: 14100'
+      operationId: assignRole_admin_assign_role_post
+      parameters:
+        - required: true
+          schema:
+            title: X-Token
+            type: string
+          name: x-token
+          in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignLoreUsersParams'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/assign-contracts-entities:
+    post:
+      tags:
+        - Admin
+      summary: Assigncontractsentities
+      description: '**Lore User IDs**    Brihu: 1    Henry: 18    Rooney: 10100    Dawson: 19    Kilauea: 14100'
+      operationId: assignContractsEntities_admin_assign_contracts_entities_post
+      parameters:
+        - required: true
+          schema:
+            title: X-Token
+            type: string
+          name: x-token
+          in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignContractsEntities'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /admin/add-wallet-contracts-to-queue:
+    post:
+      tags:
+        - Admin
+      summary: Addwalletcontracts
+      description: |-
+        **Lore User IDs**
+        Brihu: 1
+        Henry: 18
+        Rooney: 10100
+        Dawson: 19
+        Kilauea: 14100
+      operationId: addWalletContracts_admin_add_wallet_contracts_to_queue_post
+      parameters:
+        - required: true
+          schema:
+            title: X-Token
+            type: string
+          name: x-token
+          in: header
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddWalletContracts'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: Not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    AddWalletContracts:
+      title: AddWalletContracts
+      required:
+        - address
+        - lore_user_id
+        - chain
+        - sprint
+      type: object
+      properties:
+        address:
+          title: Address
+          type: string
+        lore_user_id:
+          title: Lore User Id
+          type: integer
+        chain:
+          title: Chain
+          type: integer
+        sprint:
+          title: Sprint
+          type: integer
+      example:
+        address: '0x6f8dEda24e409A35a4bB3B6e651a8F4de806C783'
+        lore_user_id: 1
+        chain: 1
+        sprint: 1
+    AssignContractsEntities:
+      title: AssignContractsEntities
+      required:
+        - contracts
+        - entity
+        - lore_user_id
+        - chain
+        - sprint
+      type: object
+      properties:
+        contracts:
+          title: Contracts
+          type: array
+          items:
+            type: string
+        entity:
+          title: Entity
+          type: string
+        lore_user_id:
+          title: Lore User Id
+          type: integer
+        chain:
+          title: Chain
+          type: integer
+        sprint:
+          title: Sprint
+          type: integer
+      example:
+        contracts:
+          - '0xface851a4921ce59e912d19329929ce6da6eb0c7'
+          - '0xc00e94cb662c3520282e6f5717214004a7f26888'
+        entity: compound
+        lore_user_id: 1
+        chain: 1
+        sprint: 1
+    AssignLoreUsersParams:
+      title: AssignLoreUsersParams
+      required:
+        - addresses
+        - lore_user_id
+      type: object
+      properties:
+        addresses:
+          title: Addresses
+          type: array
+          items:
+            type: string
+        lore_user_id:
+          title: Lore User Id
+          type: integer
+      example:
+        addresses:
+          - '0xface851a4921ce59e912d19329929ce6da6eb0c7'
+          - '0xc00e94cb662c3520282e6f5717214004a7f26888'
+        lore_user_id: 1
+    Body_explorer_post_apis__chain__post:
+      title: Body_explorer_post_apis__chain__post
+      required:
+        - apikey
+        - module
+        - action
+        - contractaddress
+        - sourceCode
+        - compilerversion
+      type: object
+      properties:
+        apikey:
+          title: Apikey
+          type: string
+        module:
+          title: Module
+          type: string
+        action:
+          title: Action
+          type: string
+        contractaddress:
+          title: Contractaddress
+          type: string
+        sourceCode:
+          title: Sourcecode
+          type: string
+        compilerversion:
+          title: Compilerversion
+          type: string
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      title: ValidationError
+      required:
+        - loc
+        - msg
+        - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            anyOf:
+              - type: string
+              - type: integer
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string

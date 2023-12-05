@@ -1,0 +1,133 @@
+{
+    "name": "Lore",
+    "logo": {
+      "light": "/logo/light.png",
+      "dark": "/logo/dark.png"
+    },
+    "favicon": "/favicon.png",
+    "colors": {
+      "primary": "#009AF1",
+      "light": "#61C6FF",
+      "dark": "#009AF1"
+    },
+    "topbarCtaButton": {
+      "name": "Launch App",
+      "url": "https://app.lorescan.com/"
+    },
+    "tabs": [
+        {
+            "name": "API Reference",
+            "url": "api-reference"
+        }
+    ],
+    "navigation": [
+        {
+            "group": "Block",
+            "pages": [
+              "api-reference/block/get-accounts-by-address",
+              "api-reference/block/get-contracts-by-creator",
+              "api-reference/block/get-accounts-by-date-created",
+              "api-reference/block/get-blocks-by-date",
+              "api-reference/block/get-blocks-by-number",
+              "api-reference/block/get-transactions-by-account",
+              "api-reference/block/get-transactions-by-block",
+              "api-reference/block/get-transactions-by-contract",
+              "api-reference/block/get-transactions-by-date",
+              "api-reference/block/get-transactions-by-hash",
+              "api-reference/block/get-logs-by-block-todo",
+              "api-reference/block/get-logs-by-transaction",
+              "api-reference/block/get-traces-by-account-todo",
+              "api-reference/block/get-traces-by-block-todo",
+              "api-reference/block/get-traces-by-transaction",
+              "api-reference/block/get-traces-by-contract-todo"
+            ]
+          },
+          {
+            "group": "Token",
+            "pages": [
+              "api-reference/token/get-native-token-balances-by-account",
+              "api-reference/token/get-narive-token-transfers-by-account",
+              "api-reference/token/get-narive-token-transfers",
+              "api-reference/token/get-tokens-by-contract-address",
+              "api-reference/token/get-tokens-by-date-created",
+              "api-reference/token/get-tokens-by-name",
+              "api-reference/token/get-tokens-by-owner",
+              "api-reference/token/get-tokens-by-symbol",
+              "api-reference/token/get-historical-native-token-balance-by-account-todo",
+              "api-reference/token/get-historical-token-balances-by-account-todo",
+              "api-reference/token/get-historical-token-owners-todo",
+              "api-reference/token/get-owners-by-contract-address-todo",
+              "api-reference/token/get-transfers",
+              "api-reference/token/get-transfers-by-contract-address",
+              "api-reference/token/get-transfers-by-account",
+              "api-reference/token/get-token-swaps-todo",
+              "api-reference/token/get-token-swaps-by-account-todo",
+              "api-reference/token/get-token-swaps-by-contract-address-todo",
+              "api-reference/token/get-token-swaps-by-pair-todo"
+            ]
+          },
+          {
+            "group": "NFT",
+            "pages": [
+              "api-reference/nft/get-collections-by-contract-address",
+              "api-reference/nft/get-collections-by-date-created",
+              "api-reference/nft/get-collections-by-name",
+              "api-reference/nft/get-collections-by-symbol",
+              "api-reference/nft/get-nfts-by-contract-address",
+              "api-reference/nft/get-nfts-by-token-id",
+              "api-reference/nft/get-nfts-by-date-minted",
+              "api-reference/nft/get-nfts-by-name",
+              "api-reference/nft/get-nfts-by-owner",
+              "api-reference/nft/get-owners-by-contract-address",
+              "api-reference/nft/get-owners-by-token-id",
+              "api-reference/nft/get-historical-nft-balances-by-account-todo",
+              "api-reference/nft/get-historical-nft-owners-todo",
+              "api-reference/nft/get-transfers",
+              "api-reference/nft/get-transfers-by-contract-address",
+              "api-reference/nft/get-transfers-by-token-id",
+              "api-reference/nft/get-transfers-by-account",
+              "api-reference/nft/get-sales-todo",
+              "api-reference/nft/get-sales-by-contract-address-todo",
+              "api-reference/nft/get-sales-by-token-id-todo",
+              "api-reference/nft/get-sales-by-account-todo"
+            ]
+          },
+          {
+            "group": "ENS",
+            "pages": [
+              "api-reference/ens/get-ens-records-by-resolved-account-todo"
+            ]
+          },
+          {
+            "group": "Token Prices",
+            "pages": [
+              "api-reference/token-prices/get-ohlc-price-history-todo"
+            ]
+          },
+          {
+            "group": "Explorer API",
+            "pages": [
+              "api-reference/explorer-api/explorer-get-apis",
+              "api-reference/explorer-api/explorer-post-apis"
+            ]
+          },
+          {
+            "group": "Admin",
+            "pages": [
+              "api-reference/admin/migratedata",
+              "api-reference/admin/submit-new-job",
+              "api-reference/admin/stopmigratedata",
+              "api-reference/admin/get-task-status",
+              "api-reference/admin/contracts-from-gcp",
+              "api-reference/admin/assignrole",
+              "api-reference/admin/assigncontractsentities",
+              "api-reference/admin/addwalletcontracts"
+            ]
+          }
+    ],
+    "footerSocials":
+      {
+          "twitter": "https://twitter.com/Lore_Explore",
+          "linkedin": "https://www.linkedin.com/company/lorescan/"
+      }
+  }
