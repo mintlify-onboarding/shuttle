@@ -22,6 +22,12 @@
     ],
     "navigation": [
         {
+            "group": "Getting Started",
+            "pages": [
+                "introduction"
+            ]
+          },
+        {
             "group": "Block",
             "pages": [
               "api-reference/block/get-accounts-by-address",
